@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Полиграфолог Шпак Максим | Детектор лжи</title>
+  <style>
+    /* --- Базовые настройки --- */
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2b6cb0;
+      --accent: #c53030;
+      --text: #2d3748;
+      --text-light: #718096;
+      --bg-light: #f7fafc;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--white);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* --- Контейнер --- */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Кнопки --- */
+    .btn {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+    }
+    .btn:hover { background: var(--primary); }
+    .btn:active { transform: scale(0.98); }
+    .btn-accent { background: var(--accent); }
+    .btn-accent:hover { background: #9b2c2c; }
+
+    /* --- Шапка --- */
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid #e2e8f0;
+      background: var(--white);
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo { font-size: 20px; font-weight: 800; color: var(--primary); }
+    .logo span { color: var(--primary-light); }
+    .header-contact { display: flex; align-items: center; gap: 20px; }
+    .phone { font-weight: 700; font-size: 18px; color: var(--text); }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #ebf8ff 0%, #ffffff 100%);
+    }
+    .hero-content { max-width: 800px; }
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-light);
+      margin-bottom: 30px;
+    }
+    .stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .stat-item h3 { font-size: 36px; color: var(--primary-light); margin-bottom: 5px; }
+    .stat-item p { font-size: 14px; color: var(--text-light); }
+
+    /* --- Услуги --- */
+    .section { padding: 80px 0; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 32px; color: var(--primary); margin-bottom: 10px; }
+    .section-title p { color: var(--text-light); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .service-card {
+      background: var(--bg-light);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .service-card h3 { font-size: 20px; margin-bottom: 15px; color: var(--primary); }
+    .service-card p { font-size: 15px; color: var(--text-light); margin-bottom: 20px; }
+    .price { font-weight: 700; font-size: 18px; color: var(--accent); }
+
+    /* --- Обо мне --- */
+    .about { background: var(--primary); color: var(--white); }
+    .about h2 { color: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-text p { margin-bottom: 20px; opacity: 0.9; }
+    .features { margin-top: 30px; }
+    .features li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+    }
+    .features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #68d391;
+      font-weight: bold;
+    }
+
+    /* --- Тарифы --- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .price-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+    .price-card.popular { border-color: var(--primary-light); }
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-light);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .price-card h3 { font-size: 22px; margin-bottom: 15px; }
+    .price-card .amount { font-size: 36px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .price-card ul { text-align: left; margin-bottom: 30px; }
+    .price-card ul li { margin-bottom: 10px; color: var(--text-light); font-size: 15px; }
+
+    /* --- Форма --- */
+    .contact { background: var(--bg-light); }
+    .form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+    }
+    .form-status { margin-top: 15px; text-align: center; font-size: 14px; }
+
+    /* --- Футер --- */
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    /* --- Мобильная адаптация --- */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; text-align: center; }
+      .header-contact { flex-direction: column; gap: 10px; }
+      .stats { gap: 20px; }
+      .form-wrapper { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Шпак <span>Максим</span></div>
+      <div class="header-contact">
+        <span class="phone">+7 (999) 123-45-67</span>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Главный экран -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Узнайте правду с точностью 95-99%</h1>
+      <p>Профессиональные проверки на полиграфе для бизнеса и частных лиц. Полная конфиденциальность и официальное заключение.</p>
+      <a href="#contact" class="btn btn-accent">Получить консультацию</a>
+      
+      <div class="stats">
+        <div class="stat-item">
+          <h3>10+</h3>
+          <p>Лет опыта</p>
+        </div>
+        <div class="stat-item">
+          <h3>800+</h3>
+          <p>Проверок</p>
+        </div>
+        <div class="stat-item">
+          <h3>98%</h3>
+          <p>Точность</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Направления работы</h2>
+        <p>Помогаю выявить правду там, где слова могут обмануть</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Кадровый скрининг</h3>
+          <p>Проверка кандидатов при трудоустройстве. Выявление скрытых фактов биографии и лояльности.</p>
+          <div class="price">от 7 000 ₽</div>
+        </div>
+        <div class="service-card">
+          <h3>Проверка персонала</h3>
+          <p>Проверка нянь, водителей, домработниц на хищения и благонадёжность.</p>
+          <div class="price">от 5 000 ₽</div>
+        </div>
+        <div class="service-card">
+          <h3>Проверка на измену</h3>
+          <p>Подтверждение или опровержение подозрений в неверности. Полная конфиденциальность.</p>
+          <div class="price">от 10 000 ₽</div>
+        </div>
+        <div class="service-card">
+          <h3>Экспертиза для суда</h3>
+          <p>Психофизиологическая экспертиза по гражданским и уголовным делам.</p>
+          <div class="price">от 25 000 ₽</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Обо мне -->
+  <section class="section about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Обо мне</h2>
+          <p>Меня зовут Шпак Максим. Я сертифицированный специалист-полиграфолог с многолетним опытом работы в сфере безопасности.</p>
+          <p>Использую современное оборудование и проверенные методики. Работаю строго по договору, гарантируя полную анонимность.</p>
+          
+          <ul class="features">
+            <li>Сертифицированный эксперт</li>
+            <li>Результат в день проверки</li>
+            <li>Выезд по Москве и области</li>
+            <li>Полная конфиденциальность</li>
+          </ul>
+        </div>
+        <div>
+          <!-- Здесь можно поставить ваше фото -->
+          <div style="background: rgba(255,255,255,0.1); border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(255,255,255,0.3);">
+            <span style="opacity: 0.5;">[ Место для вашего фото ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Тарифы -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Стоимость услуг</h2>
+        <p>Прозрачные цены без скрытых платежей</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Базовая</h3>
+          <div class="amount">от 5 000 ₽</div>
+          <ul>
+            <li>✓ До 8 вопросов</li>
+            <li>✓ Длительность 1-1.5 часа</li>
+            <li>✓ Устное заключение</li>
+            <li>✓ Приём в офисе</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%;">Выбрать</a>
+        </div>
+
+        <div class="price-card popular">
+          <div class="popular-badge">Популярный</div>
+          <h3>Стандартная</h3>
+          <div class="amount">от 10 000 ₽</div>
+          <ul>
+            <li>✓ До 15 вопросов</li>
+            <li>✓ Длительность 2-2.5 часа</li>
+            <li>✓ Письменное заключение</li>
+            <li>✓ Выезд по Москве</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%;">Выбрать</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Расширенная</h3>
+          <div class="amount">от 15 000 ₽</div>
+          <ul>
+            <li>✓ Неограниченно вопросов</li>
+            <li>✓ Длительность 3-4 часа</li>
+            <li>✓ Подробный отчёт</li>
+            <li>✓ Выезд по Москве и МО</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%;">Выбрать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма заявки -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Оставить заявку</h2>
+        <p>Заполните форму — я свяжусь с вами в ближайшее время</p>
+      </div>
+      
+      <div class="form-wrapper">
+        <form id="tgForm">
+          <div class="form-group">
+            <label>Ваше имя</label>
+            <input type="text" id="name" placeholder="Иван" required>
+          </div>
+          <div class="form-group">
+            <label>Номер телефона</label>
+            <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+          </div>
+          <div class="form-group">
+            <label>Комментарий (необязательно)</label>
+            <textarea id="comment" rows="3" placeholder="Опишите вашу ситуацию..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent" style="width: 100%;" id="submitBtn">Отправить заявку</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <div class="container">
+      <p>© 2024 Полиграфолог Шпак Максим. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Скрипт отправки в Telegram -->
+  <script>
+    // ⚠️ ВСТАВЬТЕ ВАШ ТОКЕН ОТ БОТА
+    const BOT_TOKEN = 'ВСТАВЬТЕ_ВАШ_ТОКЕН';
+    const CHAT_ID = '1182788244';
+
+    const form = document.getElementById('tgForm');
+    const statusEl = document.getElementById('formStatus');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const comment = document.getElementById('comment').value || 'Нет';
+
+      btn.disabled = true;
+      btn.textContent = 'Отправляем...';
+      statusEl.textContent = '';
+
+      const message = `📋 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Комментарий: ${comment}`;
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.ok) {
+          statusEl.textContent = 'Заявка успешно отправлена! Я свяжусь с вами скоро.';
+          statusEl.style.color = 'green';
+          form.reset();
+        } else {
+          throw new Error(data.description || 'Ошибка Telegram');
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Ошибка отправки. Попробуйте позже или позвоните по телефону.';
+        statusEl.style.color = 'red';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Отправить заявку';
+      }
+    });
+  </script>
+</body>
+</html>
