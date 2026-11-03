@@ -5,42 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Полиграфолог Шпак Максим | Детектор лжи</title>
   <style>
-    /* --- Базовые настройки --- */
     :root {
-      --primary: #1a365d;
-      --primary-light: #2b6cb0;
-      --accent: #c53030;
-      --text: #2d3748;
-      --text-light: #718096;
-      --bg-light: #f7fafc;
-      --white: #ffffff;
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #ef4444;
+      --accent-hover: #dc2626;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
+      color: var(--text-main);
       line-height: 1.6;
-      background-color: var(--white);
+      background-color: var(--bg-main);
       -webkit-tap-highlight-color: transparent;
     }
 
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* --- Контейнер --- */
     .container {
       max-width: 1140px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* --- Кнопки --- */
     .btn {
       display: inline-block;
-      background: var(--primary-light);
-      color: var(--white);
+      background: var(--primary);
+      color: #ffffff;
       padding: 12px 24px;
       border-radius: 8px;
       font-weight: 600;
@@ -50,16 +49,19 @@
       font-size: 16px;
       text-align: center;
     }
-    .btn:hover { background: var(--primary); }
+    .btn:hover { background: var(--primary-hover); }
     .btn:active { transform: scale(0.98); }
     .btn-accent { background: var(--accent); }
-    .btn-accent:hover { background: #9b2c2c; }
+    .btn-accent:hover { background: var(--accent-hover); }
 
-    /* --- Шапка --- */
     header {
       padding: 20px 0;
-      border-bottom: 1px solid #e2e8f0;
-      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
     }
     .header-inner {
       display: flex;
@@ -68,42 +70,40 @@
       flex-wrap: wrap;
       gap: 15px;
     }
-    .logo { font-size: 20px; font-weight: 800; color: var(--primary); }
-    .logo span { color: var(--primary-light); }
+    .logo { font-size: 20px; font-weight: 800; color: var(--text-main); }
+    .logo span { color: var(--primary); }
     .header-contact { display: flex; align-items: center; gap: 20px; }
-    .phone { font-weight: 700; font-size: 18px; color: var(--text); }
+    .phone { font-weight: 700; font-size: 18px; color: var(--text-main); }
 
-    /* --- Hero Section --- */
     .hero {
-      padding: 80px 0;
-      background: linear-gradient(135deg, #ebf8ff 0%, #ffffff 100%);
+      padding: 100px 0 80px;
+      background: radial-gradient(circle at top right, #1e293b 0%, var(--bg-main) 60%);
     }
     .hero-content { max-width: 800px; }
     .hero h1 {
-      font-size: 42px;
+      font-size: 46px;
       line-height: 1.2;
-      color: var(--primary);
+      color: var(--text-main);
       margin-bottom: 20px;
     }
     .hero p {
       font-size: 18px;
-      color: var(--text-light);
+      color: var(--text-muted);
       margin-bottom: 30px;
     }
     .stats {
       display: flex;
       gap: 40px;
-      margin-top: 40px;
+      margin-top: 50px;
       flex-wrap: wrap;
     }
-    .stat-item h3 { font-size: 36px; color: var(--primary-light); margin-bottom: 5px; }
-    .stat-item p { font-size: 14px; color: var(--text-light); }
+    .stat-item h3 { font-size: 36px; color: var(--primary); margin-bottom: 5px; }
+    .stat-item p { font-size: 14px; color: var(--text-muted); }
 
-    /* --- Услуги --- */
     .section { padding: 80px 0; }
     .section-title { text-align: center; margin-bottom: 50px; }
-    .section-title h2 { font-size: 32px; color: var(--primary); margin-bottom: 10px; }
-    .section-title p { color: var(--text-light); }
+    .section-title h2 { font-size: 32px; color: var(--text-main); margin-bottom: 10px; }
+    .section-title p { color: var(--text-muted); }
 
     .services-grid {
       display: grid;
@@ -111,112 +111,119 @@
       gap: 25px;
     }
     .service-card {
-      background: var(--bg-light);
+      background: var(--bg-card);
       padding: 30px;
       border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border-color: var(--primary);
     }
-    .service-card h3 { font-size: 20px; margin-bottom: 15px; color: var(--primary); }
-    .service-card p { font-size: 15px; color: var(--text-light); margin-bottom: 20px; }
+    .service-card h3 { font-size: 20px; margin-bottom: 15px; color: var(--text-main); }
+    .service-card p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
     .price { font-weight: 700; font-size: 18px; color: var(--accent); }
 
-    /* --- Обо мне --- */
-    .about { background: var(--primary); color: var(--white); }
-    .about h2 { color: var(--white); }
+    .about { background: var(--bg-card); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
       align-items: center;
     }
-    .about-text p { margin-bottom: 20px; opacity: 0.9; }
+    .about-text p { margin-bottom: 20px; color: var(--text-muted); }
     .features { margin-top: 30px; }
     .features li {
       margin-bottom: 15px;
       padding-left: 30px;
       position: relative;
+      color: var(--text-main);
     }
     .features li::before {
       content: '✓';
       position: absolute;
       left: 0;
-      color: #68d391;
+      color: var(--primary);
       font-weight: bold;
     }
 
-    /* --- Тарифы --- */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
     .price-card {
-      border: 2px solid #e2e8f0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 40px 30px;
       text-align: center;
       position: relative;
     }
-    .price-card.popular { border-color: var(--primary-light); }
+    .price-card.popular { 
+      border-color: var(--primary); 
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); 
+    }
     .popular-badge {
       position: absolute;
       top: -15px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--primary-light);
+      background: var(--primary);
       color: white;
       padding: 5px 15px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: bold;
     }
-    .price-card h3 { font-size: 22px; margin-bottom: 15px; }
-    .price-card .amount { font-size: 36px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .price-card h3 { font-size: 22px; margin-bottom: 15px; color: var(--text-main); }
+    .price-card .amount { font-size: 36px; font-weight: 800; color: var(--text-main); margin-bottom: 20px; }
     .price-card ul { text-align: left; margin-bottom: 30px; }
-    .price-card ul li { margin-bottom: 10px; color: var(--text-light); font-size: 15px; }
+    .price-card ul li { margin-bottom: 10px; color: var(--text-muted); font-size: 15px; }
 
-    /* --- Форма --- */
-    .contact { background: var(--bg-light); }
+    .contact { background: var(--bg-main); }
     .form-wrapper {
       max-width: 600px;
       margin: 0 auto;
-      background: var(--white);
+      background: var(--bg-card);
       padding: 40px;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-main); }
     .form-group input, .form-group textarea {
       width: 100%;
       padding: 12px 15px;
-      border: 1px solid #cbd5e0;
+      background: var(--bg-main);
+      border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 16px;
+      color: var(--text-main);
       font-family: inherit;
       transition: border-color 0.3s;
     }
     .form-group input:focus, .form-group textarea:focus {
       outline: none;
-      border-color: var(--primary-light);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder {
+      color: var(--text-muted);
     }
     .form-status { margin-top: 15px; text-align: center; font-size: 14px; }
 
-    /* --- Футер --- */
     footer {
       padding: 30px 0;
       text-align: center;
-      border-top: 1px solid #e2e8f0;
-      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
       font-size: 14px;
     }
 
-    /* --- Мобильная адаптация --- */
     @media (max-width: 768px) {
       .hero h1 { font-size: 32px; }
       .about-grid { grid-template-columns: 1fr; }
@@ -224,12 +231,12 @@
       .header-contact { flex-direction: column; gap: 10px; }
       .stats { gap: 20px; }
       .form-wrapper { padding: 25px; }
+      header { position: static; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Шапка -->
   <header>
     <div class="container header-inner">
       <div class="logo">Шпак <span>Максим</span></div>
@@ -240,7 +247,6 @@
     </div>
   </header>
 
-  <!-- Главный экран -->
   <section class="hero">
     <div class="container hero-content">
       <h1>Узнайте правду с точностью 95-99%</h1>
@@ -264,7 +270,6 @@
     </div>
   </section>
 
-  <!-- Услуги -->
   <section class="section">
     <div class="container">
       <div class="section-title">
@@ -297,7 +302,6 @@
     </div>
   </section>
 
-  <!-- Обо мне -->
   <section class="section about">
     <div class="container">
       <div class="about-grid">
@@ -314,16 +318,14 @@
           </ul>
         </div>
         <div>
-          <!-- Здесь можно поставить ваше фото -->
-          <div style="background: rgba(255,255,255,0.1); border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(255,255,255,0.3);">
-            <span style="opacity: 0.5;">[ Место для вашего фото ]</span>
+          <div style="background: rgba(255,255,255,0.05); border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--border);">
+            <span style="color: var(--text-muted);">[ Место для вашего фото ]</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Тарифы -->
   <section class="section">
     <div class="container">
       <div class="section-title">
@@ -364,7 +366,7 @@
             <li>✓ Неограниченно вопросов</li>
             <li>✓ Длительность 3-4 часа</li>
             <li>✓ Подробный отчёт</li>
-            <li>✓ Выезд по Москве и МО</li>
+            <li>✓ Выезд по Тюмени и области</li>
           </ul>
           <a href="#contact" class="btn" style="width: 100%;">Выбрать</a>
         </div>
@@ -372,7 +374,6 @@
     </div>
   </section>
 
-  <!-- Форма заявки -->
   <section id="contact" class="section contact">
     <div class="container">
       <div class="section-title">
@@ -401,16 +402,13 @@
     </div>
   </section>
 
-  <!-- Футер -->
   <footer>
     <div class="container">
       <p>© 2026 Полиграфолог Шпак Максим. Все права защищены.</p>
     </div>
   </footer>
 
-  <!-- Скрипт отправки в Telegram -->
   <script>
-    // ⚠️ ВСТАВЬТЕ ВАШ ТОКЕН ОТ БОТА
     const BOT_TOKEN = '8712654064:AAErGJn7fH9xl8yu1bRyyOp9ZIZOkBa77ds';
     const CHAT_ID = '1182788244';
 
@@ -445,7 +443,7 @@
 
         if (data.ok) {
           statusEl.textContent = 'Заявка успешно отправлена! Я свяжусь с вами скоро.';
-          statusEl.style.color = 'green';
+          statusEl.style.color = '#4ade80';
           form.reset();
         } else {
           throw new Error(data.description || 'Ошибка Telegram');
@@ -453,7 +451,7 @@
       } catch (err) {
         console.error(err);
         statusEl.textContent = 'Ошибка отправки. Попробуйте позже или позвоните по телефону.';
-        statusEl.style.color = 'red';
+        statusEl.style.color = '#f87171';
       } finally {
         btn.disabled = false;
         btn.textContent = 'Отправить заявку';
