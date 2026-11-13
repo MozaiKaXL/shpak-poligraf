@@ -259,18 +259,21 @@
       background: rgba(212, 175, 55, .12);
       border-radius: 50%;
     }
-    .photo-placeholder {
-      background: var(--surface-2);
-      border: 2px dashed var(--line-2);
+    .portrait {
+      position: relative;
       border-radius: var(--radius);
-      aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-      padding: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, .35);
+      background: #0E0E10;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 24px 60px -28px rgba(0, 0, 0, .95);
+    }
+    .portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 18%;
     }
 
     /* ---------- Тарифы ---------- */
@@ -552,8 +555,8 @@
             <li>Полная конфиденциальность</li>
           </ul>
         </div>
-        <div>
-          <div class="photo-placeholder">[ Место для вашего фото ]</div>
+        <div class="portrait">
+          <img src="photo.webp" alt="Шпак Максим — сертифицированный полиграфолог" width="800" height="1066" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -716,12 +719,4 @@
         }
       } catch (err) {
         console.error(err);
-        setStatus('Ошибка отправки. Попробуйте позже или позвоните по телефону.', 'err');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Отправить заявку';
-      }
-    });
-  </script>
-</body>
-</html>
+        setStatus('Ошибка отправки. Попробуйте позже или позвоните по телефон
