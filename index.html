@@ -629,15 +629,18 @@
             <textarea id="comment" name="comment" rows="3" placeholder="Опишите вашу ситуацию..."></textarea>
           </div>
 
-          <!-- ловушка для спам-ботов: люди это поле не видят и не заполняют -->
+          <!-- ловушка для спам-ботов: без label и с нейтральным именем,
+               чтобы автозаполнение браузера её не заполняло -->
           <div class="hp-field" aria-hidden="true">
-            <label for="company">Компания</label>
-            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+            <input type="text" id="hp" name="hp" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore="true">
           </div>
 
           <button type="submit" class="btn" style="width: 100%;" id="submitBtn">Отправить заявку</button>
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
         </form>
+        <noscript>
+          <p class="form-status err" style="margin-top: 12px;">Для отправки заявки включите JavaScript в браузере или позвоните по телефону.</p>
+        </noscript>
         <p class="form-note">Или позвоните: <a href="tel:+79224839229">+7 (922) 483-92-29</a></p>
       </div>
     </div>
@@ -658,6 +661,11 @@
     const statusEl = document.getElementById('formStatus');
     const btn = document.getElementById('submitBtn');
 
+    // если форма не найдена — дальше нет смысла идти
+    if (form && statusEl && btn) {
+      console.log('[form] скрипт загружен, отправка на ' + ENDPOINT);
+    }
+
     function setStatus(text, type) {
       statusEl.textContent = text;
       statusEl.className = 'form-status' + (type ? ' ' + type : '');
@@ -667,7 +675,10 @@
       e.preventDefault();
 
       // honeypot: заполнено — это бот, молча выходим
-      if (document.getElementById('company').value) return;
+      if (document.getElementById('hp').value) {
+        console.warn('[form] сработала ловушка от спама, отправка пропущена');
+        return;
+      }
 
       const name = document.getElementById('name').value.trim();
       const phone = document.getElementById('phone').value.trim();
