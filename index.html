@@ -556,7 +556,7 @@
           </ul>
         </div>
         <div class="portrait">
-          <img src="photo.webp" alt="Шпак Максим — сертифицированный полиграфолог" width="800" height="1200" loading="lazy" decoding="async">
+          <img src="photo-shpak.webp" alt="Шпак Максим — сертифицированный полиграфолог" width="800" height="1200" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -719,4 +719,12 @@
         }
       } catch (err) {
         console.error(err);
-        setStatus('Ошибка отправки. Попробуйте позже или позвоните по телефон
+        setStatus('Ошибка отправки. Попробуйте позже или позвоните по телефону.', 'err');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Отправить заявку';
+      }
+    });
+  </script>
+</body>
+</html>
