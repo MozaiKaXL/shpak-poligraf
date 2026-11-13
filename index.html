@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#121214">
   <title>Полиграфолог Шпак Максим | Детектор лжи в Тюмени</title>
   <meta name="description" content="Профессиональная проверка на полиграфе для бизнеса и частных лиц. 10+ лет опыта, 800+ проверок, точность 98%. Полная конфиденциальность, официальное заключение. Тюмень и область.">
   <style>
     :root {
-      /* Палитра «Корпоративное доверие» */
-      --bg: #F8F9FA;
-      --surface: #FFFFFF;
-      --ink: #0F172A;
-      --ink-2: #1E293B;
-      --text: #334155;
-      --muted: #64748B;
-      --accent: #2563EB;
-      --accent-dark: #1D4ED8;
-      --accent-soft: #EFF4FE;
-      --line: #E2E8F0;
-      --line-strong: #CBD5E1;
-      --ok: #15803D;
-      --err: #B91C1C;
+      /* Палитра «Премиум и Конфиденциальность» */
+      --bg: #121214;          /* угольно-чёрный фон */
+      --bg-deep: #0B0B0D;     /* футер, блок заявки */
+      --surface: #18181B;     /* карточки */
+      --surface-2: #1F1F23;   /* подложки, поля */
+      --ink: #F3F4F6;         /* основной текст */
+      --text: #D4D4D8;        /* абзацы */
+      --muted: #9CA3AF;       /* второстепенный текст */
+      --gold: #D4AF37;        /* акцент */
+      --gold-soft: #C5A880;
+      --gold-dark: #B8912C;
+      --emerald: #064E3B;     /* вторичный акцент */
+      --line: #2A2A2E;        /* рамки */
+      --line-2: #3F3F46;
       --radius: 14px;
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
-      --shadow-md: 0 14px 34px -14px rgba(15, 23, 42, .22);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
+      --shadow-md: 0 18px 40px -18px rgba(0, 0, 0, .85);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,7 +43,7 @@
 
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-    ::selection { background: #DBEAFE; color: var(--ink); }
+    ::selection { background: rgba(212, 175, 55, .28); color: #fff; }
 
     .container {
       max-width: 1140px;
@@ -53,37 +54,37 @@
     /* ---------- Кнопки ---------- */
     .btn {
       display: inline-block;
-      background: var(--accent);
-      color: #fff;
+      background: var(--gold);
+      color: #141414;
       padding: 13px 26px;
       border-radius: 10px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 16px;
       line-height: 1.2;
       text-align: center;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--gold);
       cursor: pointer;
       transition: background .2s, border-color .2s, transform .08s, box-shadow .2s;
-      box-shadow: 0 6px 16px -8px rgba(37, 99, 235, .7);
+      box-shadow: 0 10px 24px -12px rgba(212, 175, 55, .55);
     }
-    .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+    .btn:hover { background: #E0BE4E; border-color: #E0BE4E; }
     .btn:active { transform: translateY(1px); }
-    .btn:focus-visible { outline: 3px solid rgba(37, 99, 235, .35); outline-offset: 2px; }
-    .btn:disabled { opacity: .65; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn:focus-visible { outline: 3px solid rgba(212, 175, 55, .35); outline-offset: 2px; }
+    .btn:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
 
     .btn-ghost {
       background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--line-strong);
+      color: var(--gold-soft);
+      border: 1px solid var(--line-2);
       box-shadow: none;
     }
-    .btn-ghost:hover { background: var(--accent-soft); border-color: var(--accent); }
+    .btn-ghost:hover { background: rgba(212, 175, 55, .08); border-color: var(--gold-soft); color: var(--gold); }
 
     /* ---------- Шапка ---------- */
     header {
       padding: 16px 0;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, .88);
+      background: rgba(18, 18, 20, .88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       position: sticky;
@@ -103,7 +104,7 @@
       letter-spacing: -.02em;
       color: var(--ink);
     }
-    .logo span { color: var(--accent); }
+    .logo span { color: var(--gold); }
     .header-contact { display: flex; align-items: center; gap: 22px; }
     .phone {
       font-weight: 700;
@@ -111,13 +112,13 @@
       color: var(--ink);
       white-space: nowrap;
     }
-    .phone:hover { color: var(--accent); }
+    .phone:hover { color: var(--gold); }
 
     /* ---------- Первый экран ---------- */
     .hero {
       padding: 96px 0 84px;
       background:
-        radial-gradient(900px 460px at 88% -12%, #E6EEFC 0%, rgba(248, 249, 250, 0) 68%),
+        radial-gradient(820px 440px at 85% -15%, rgba(212, 175, 55, .13) 0%, rgba(18, 18, 20, 0) 70%),
         var(--bg);
       border-bottom: 1px solid var(--line);
     }
@@ -148,7 +149,7 @@
       line-height: 1.1;
       font-weight: 800;
       letter-spacing: -.03em;
-      color: var(--accent);
+      color: var(--gold);
       margin-bottom: 4px;
     }
     .stat-item p { font-size: 14px; color: var(--muted); }
@@ -178,11 +179,12 @@
       border: 1px solid var(--line);
       box-shadow: var(--shadow-sm);
       transition: transform .22s, box-shadow .22s, border-color .22s;
+      position: relative;
     }
     .service-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      border-color: var(--accent);
+      border-color: rgba(212, 175, 55, .55);
     }
     .service-card h3 {
       font-size: 19px;
@@ -203,8 +205,23 @@
       margin-right: 2px;
     }
 
+    /* метка «Судебная экспертиза» — единственное место с изумрудным */
+    .tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #6EE7B7;
+      background: rgba(6, 78, 59, .55);
+      border: 1px solid rgba(16, 185, 129, .35);
+    }
+
     /* ---------- Обо мне ---------- */
-    .about { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .about { background: #151517; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -223,7 +240,7 @@
       margin-bottom: 14px;
       padding-left: 32px;
       position: relative;
-      color: var(--ink-2);
+      color: var(--text);
       font-weight: 500;
     }
     .features li::before {
@@ -238,13 +255,13 @@
       justify-content: center;
       font-size: 12px;
       font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-soft);
+      color: var(--gold);
+      background: rgba(212, 175, 55, .12);
       border-radius: 50%;
     }
     .photo-placeholder {
-      background: var(--bg);
-      border: 2px dashed var(--line-strong);
+      background: var(--surface-2);
+      border: 2px dashed var(--line-2);
       border-radius: var(--radius);
       aspect-ratio: 4 / 3;
       display: flex;
@@ -275,21 +292,22 @@
     }
     .price-card:hover { box-shadow: var(--shadow-md); }
     .price-card.popular {
-      border: 1.5px solid var(--accent);
-      box-shadow: 0 18px 40px -18px rgba(37, 99, 235, .45);
+      border: 1.5px solid var(--gold);
+      background: linear-gradient(180deg, rgba(212, 175, 55, .07) 0%, rgba(24, 24, 27, 1) 55%);
+      box-shadow: 0 24px 50px -22px rgba(212, 175, 55, .35);
     }
     .popular-badge {
       position: absolute;
       top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--accent);
-      color: #fff;
+      background: var(--gold);
+      color: #141414;
       padding: 5px 16px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .04em;
+      font-weight: 800;
+      letter-spacing: .06em;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -304,7 +322,7 @@
       line-height: 1.15;
       font-weight: 800;
       letter-spacing: -.03em;
-      color: var(--ink);
+      color: #fff;
       margin-bottom: 24px;
     }
     .price-card .amount small {
@@ -332,25 +350,26 @@
       content: '✓';
       position: absolute;
       left: 0;
-      color: var(--accent);
+      color: var(--gold);
       font-weight: 700;
     }
 
     /* ---------- Заявка ---------- */
     .contact {
       background:
-        radial-gradient(700px 380px at 15% 0%, #1B2A4A 0%, rgba(15, 23, 42, 0) 70%),
-        var(--ink);
+        radial-gradient(720px 380px at 12% -10%, rgba(212, 175, 55, .12) 0%, rgba(11, 11, 13, 0) 70%),
+        var(--bg-deep);
     }
-    .contact .section-title h2 { color: #F3F4F6; }
-    .contact .section-title p { color: #94A3B8; }
+    .contact .section-title h2 { color: var(--ink); }
+    .contact .section-title p { color: var(--muted); }
     .form-wrapper {
       max-width: 600px;
       margin: 0 auto;
       background: var(--surface);
       padding: 40px;
+      border: 1px solid var(--line);
       border-radius: 18px;
-      box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .55);
+      box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .9);
     }
     .form-group { margin-bottom: 20px; }
     .form-group label {
@@ -375,13 +394,25 @@
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
-      background: #fff;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, .16);
+      background: #101012;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, .16);
     }
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #94A3B8; }
+    .form-group textarea::placeholder { color: #71717A; }
     .form-group textarea { resize: vertical; min-height: 88px; }
+
+    /* чтобы автозаполнение Chrome не заливало поля белым */
+    .form-group input:-webkit-autofill,
+    .form-group input:-webkit-autofill:hover,
+    .form-group input:-webkit-autofill:focus,
+    .form-group textarea:-webkit-autofill {
+      -webkit-text-fill-color: var(--ink);
+      -webkit-box-shadow: 0 0 0 1000px #101012 inset;
+      box-shadow: 0 0 0 1000px #101012 inset;
+      caret-color: var(--ink);
+      transition: background-color 9999s ease-in-out 0s;
+    }
 
     /* ловушка для спам-ботов — человек её не видит */
     .hp-field {
@@ -397,21 +428,21 @@
       margin-top: 16px;
       text-align: center;
       font-size: 14px;
-      color: #94A3B8;
+      color: var(--muted);
     }
-    .form-note a { color: #fff; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, .35); }
-    .form-note a:hover { border-color: #fff; }
+    .form-note a { color: var(--gold-soft); font-weight: 600; border-bottom: 1px solid rgba(212, 175, 55, .35); }
+    .form-note a:hover { color: var(--gold); border-color: var(--gold); }
     .form-status { margin-top: 14px; text-align: center; font-size: 14px; font-weight: 500; min-height: 22px; }
-    .form-status.ok { color: var(--ok); }
-    .form-status.err { color: var(--err); }
+    .form-status.ok { color: #4ADE80; }
+    .form-status.err { color: #F87171; }
 
     /* ---------- Футер ---------- */
     footer {
-      background: var(--ink);
+      background: var(--bg-deep);
       padding: 28px 0;
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, .08);
-      color: #94A3B8;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
       font-size: 14px;
     }
 
@@ -497,6 +528,7 @@
           <div class="price"><small>от</small> 10 000 ₽</div>
         </div>
         <div class="service-card">
+          <span class="tag">Судебная экспертиза</span>
           <h3>Экспертиза для суда</h3>
           <p>Психофизиологическая экспертиза по гражданским и уголовным делам.</p>
           <div class="price"><small>от</small> 25 000 ₽</div>
