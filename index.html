@@ -29,7 +29,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     section[id] { scroll-margin-top: 92px; }
 
     body {
@@ -582,6 +582,16 @@
     .doc-card .cap { padding: 14px 16px 16px; }
     .doc-card .cap strong { display: block; font-size: 14.5px; font-weight: 600; color: var(--ink); }
     .doc-card .cap span { font-size: 12.5px; color: var(--muted); }
+    .doc-card {
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .doc-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, .55);
+      box-shadow: var(--shadow-md);
+    }
+    .doc-card:hover .stub { border-bottom-color: rgba(212, 175, 55, .4); }
+    .doc-card:hover .cap strong { color: var(--gold-soft); }
 
     /* ---------- Доп. услуги ---------- */
     .extras-grid {
@@ -601,6 +611,16 @@
     }
     .extra-item span { font-size: 15px; color: var(--text); }
     .extra-item b { font-size: 15px; color: var(--ink); white-space: nowrap; }
+    .extra-item {
+      transition: transform .22s, box-shadow .22s, border-color .22s, background .22s;
+    }
+    .extra-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(212, 175, 55, .55);
+      background: #1E1E22;
+      box-shadow: var(--shadow-md);
+    }
+    .extra-item:hover b { color: var(--gold); }
 
     /* ---------- Контакты ---------- */
     .contact-grid {
@@ -1061,67 +1081,47 @@
   </footer>
 
   <script>
-    /* Заявки уходят на Cloudflare Worker, который пересылает их в Telegram.
-       Токен бота здесь не хранится — он лежит в секретах Worker. */
-    const ENDPOINT = 'https://small-haze-40a1.rusya-shpak-05.workers.dev';
+    /* Плавная прокрутка по пунктам меню: быстрый старт, мягкое торможение */
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const headerEl = document.querySelector('header');
 
-    const form = document.getElementById('tgForm');
-    const statusEl = document.getElementById('formStatus');
-    const btn = document.getElementById('submitBtn');
-
-    // если форма не найдена — дальше нет смысла идти
-    if (form && statusEl && btn) {
-      console.log('[form] скрипт загружен, отправка на ' + ENDPOINT);
-    }
-
-    function setStatus(text, type) {
-      statusEl.textContent = text;
-      statusEl.className = 'form-status' + (type ? ' ' + type : '');
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // honeypot: заполнено — это бот, молча выходим
-      if (document.getElementById('hp').value) {
-        console.warn('[form] сработала ловушка от спама, отправка пропущена');
-        return;
+      function headerOffset() {
+        if (!headerEl) return 0;
+        const pos = getComputedStyle(headerEl).position;
+        if (pos !== 'sticky' && pos !== 'fixed') return 0;
+        return headerEl.getBoundingClientRect().height;
       }
 
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const comment = document.getElementById('comment').value.trim();
+      function scrollToY(targetY) {
+        const startY = window.pageYOffset;
+        const diff = targetY - startY;
+        if (Math.abs(diff) < 2) return;
 
-      if (!name) {
-        setStatus('Пожалуйста, укажите ваше имя.', 'err');
-        document.getElementById('name').focus();
-        return;
-      }
-      if (phone.replace(/\D/g, '').length < 10) {
-        setStatus('Проверьте номер телефона — он введён не полностью.', 'err');
-        document.getElementById('phone').focus();
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Отправляем...';
-      setStatus('', '');
-
-      try {
-        const response = await fetch(ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, comment }),
-        });
-
-        const data = await response.json().catch(() => ({}));
-
-        if (response.ok && data.ok) {
-          setStatus('Заявка успешно отправлена! Я свяжусь с вами скоро.', 'ok');
-          form.reset();
-        } else {
-          throw new Error(data.error || 'Ошибка отправки');
+        if (reduceMotion.matches) {
+          window.scrollTo(0, targetY);
+          return;
         }
-      } catch (err) {
-        console.error(err);
-        setStatus('Ошибка отправки. Попробуйте позже
+
+        // чем дальше ехать, тем дольше, но не дольше 850 мс
+        const duration = Math.min(850, Math.max(420, Math.abs(diff) * 0.35));
+        let startTime = null;
+
+        function step(now) {
+          if (startTime === null) startTime = now;
+          const p = Math.min(1, (now - startTime) / duration);
+          // easeInOutCubic: быстро разгоняется, мягко тормозит
+          const eased = p < 0.5
+            ? 4 * p * p * p
+            : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          window.scrollTo(0, startY + diff * eased);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      function targetYFor(el) {
+        return el.getBoundingClientRect().top + window.pageYOffset - headerOffset() - 10;
+      }
+
+      document.addEventListener(
