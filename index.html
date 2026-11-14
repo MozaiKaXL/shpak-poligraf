@@ -550,6 +550,14 @@
     .link-arrow { font-size: 14px; font-weight: 600; color: var(--gold-soft); }
     .link-arrow:hover { color: var(--gold); }
 
+    /* ---------- Психолог в команде ---------- */
+    .team-card {
+      margin-top: 36px;
+      grid-template-columns: 240px 1fr;
+    }
+    .team-card .stub { aspect-ratio: 1 / 1; }
+    .team-card p + p { margin-top: 10px; }
+
     /* ---------- Документы ---------- */
     .docs-grid {
       display: grid;
@@ -571,37 +579,6 @@
     .doc-card .cap { padding: 14px 16px 16px; }
     .doc-card .cap strong { display: block; font-size: 14.5px; font-weight: 600; color: var(--ink); }
     .doc-card .cap span { font-size: 12.5px; color: var(--muted); }
-
-    /* ---------- Новости ---------- */
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-    .news-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    .news-card .stub {
-      aspect-ratio: 16 / 9;
-      border: none;
-      border-bottom: 1px dashed var(--line-2);
-      border-radius: 0;
-    }
-    .news-body { padding: 20px; }
-    .news-date {
-      font-size: 11.5px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    .news-body h3 { font-size: 17px; color: var(--ink); margin-bottom: 8px; }
-    .news-body p { font-size: 14.5px; color: var(--muted); }
 
     /* ---------- Доп. услуги ---------- */
     .extras-grid {
@@ -661,7 +638,6 @@
       transition: border-color .2s, background .2s, color .2s;
     }
     .messengers a:hover { border-color: var(--gold-soft); background: rgba(212, 175, 55, .08); color: var(--gold); }
-    .map-stub { aspect-ratio: 4 / 3; margin-top: 18px; }
 
     /* ---------- Футер ---------- */
     .footer-links {
@@ -727,7 +703,6 @@
         <a href="#about">Обо мне</a>
         <a href="#pricing">Стоимость</a>
         <a href="#docs">Документы</a>
-        <a href="#news">Новости</a>
         <a href="#extras">Доп. услуги</a>
         <a href="#contact">Контакты</a>
       </nav>
@@ -852,6 +827,7 @@
 
           <ul class="features">
             <li>Сертифицированный эксперт</li>
+            <li>Психолог в команде</li>
             <li>Результат в день проверки</li>
             <li>Выезд по Тюмени и области</li>
             <li>Полная конфиденциальность</li>
@@ -859,6 +835,15 @@
         </div>
         <div class="portrait">
           <img src="photo-shpak.webp" alt="Шпак Максим — сертифицированный полиграфолог" width="800" height="1200" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div class="equipment team-card">
+        <div class="stub">[ Заглушка: фото психолога ]</div>
+        <div>
+          <h3>Психолог в команде</h3>
+          <p>Работаю не один: в команде есть психолог. Он помогает подготовиться к процедуре, снижает тревогу и разбирает результат так, чтобы разговор не превратился в дополнительный стресс.</p>
+          <p>Для человека, которого проверяют, это часто волнительная ситуация — а спокойное состояние напрямую влияет на качество записи и точность вывода.</p>
         </div>
       </div>
     </div>
@@ -948,42 +933,6 @@
             <span>Оборудование</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="news" class="section about">
-    <div class="container">
-      <div class="section-title">
-        <h2>Новости</h2>
-        <p>Практика, разборы ситуаций и обновления</p>
-      </div>
-
-      <div class="news-grid">
-        <article class="news-card">
-          <div class="stub">[ Заглушка: обложка новости ]</div>
-          <div class="news-body">
-            <div class="news-date">[ Дата ]</div>
-            <h3>[ Заглушка: заголовок новости ]</h3>
-            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
-          </div>
-        </article>
-        <article class="news-card">
-          <div class="stub">[ Заглушка: обложка новости ]</div>
-          <div class="news-body">
-            <div class="news-date">[ Дата ]</div>
-            <h3>[ Заглушка: заголовок новости ]</h3>
-            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
-          </div>
-        </article>
-        <article class="news-card">
-          <div class="stub">[ Заглушка: обложка новости ]</div>
-          <div class="news-body">
-            <div class="news-date">[ Дата ]</div>
-            <h3>[ Заглушка: заголовок новости ]</h3>
-            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -1089,8 +1038,6 @@
               </div>
             </li>
           </ul>
-
-          <div class="stub map-stub">[ Заглушка: карта проезда ]</div>
         </aside>
       </div>
     </div>
