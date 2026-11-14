@@ -553,9 +553,12 @@
     /* ---------- Психолог в команде ---------- */
     .team-card {
       margin-top: 36px;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 360px 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 28px;
     }
-    .team-card .stub { aspect-ratio: 1 / 1; }
+    .team-card .stub { aspect-ratio: 4 / 5; font-size: 13.5px; }
     .team-card p + p { margin-top: 10px; }
 
     /* ---------- Документы ---------- */
@@ -656,6 +659,8 @@
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; }
       .equipment { grid-template-columns: 1fr; gap: 20px; }
+      .team-card { gap: 22px; padding: 22px; }
+      .team-card .stub { max-width: 320px; }
     }
 
     @media (max-width: 768px) {
@@ -1119,12 +1124,4 @@
         }
       } catch (err) {
         console.error(err);
-        setStatus('Ошибка отправки. Попробуйте позже или позвоните по телефону.', 'err');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Отправить заявку';
-      }
-    });
-  </script>
-</body>
-</html>
+        setStatus('Ошибка отправки. Попробуйте позже
