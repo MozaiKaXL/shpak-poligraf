@@ -449,8 +449,251 @@
       font-size: 14px;
     }
 
+    /* ---------- Навигация ---------- */
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: 6px;
+      gap: 6px 19px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: color .18s, border-color .18s;
+    }
+    .nav a:hover { color: var(--gold); border-bottom-color: rgba(212, 175, 55, .5); }
+
+    /* ---------- Бейджи доверия ---------- */
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .trust span {
+      position: relative;
+      padding: 7px 14px 7px 32px;
+      font-size: 13px;
+      color: var(--text);
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+    .trust span::before {
+      content: '✓';
+      position: absolute;
+      left: 12px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ---------- Шаги проверки ---------- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .step:hover { border-color: rgba(212, 175, 55, .45); transform: translateY(-3px); }
+    .step-num {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      color: var(--gold);
+    }
+    .step h3 { font-size: 17px; margin: 10px 0 8px; color: var(--ink); }
+    .step p { font-size: 14.5px; color: var(--muted); }
+
+    /* ---------- Заглушки для будущих картинок ---------- */
+    .stub {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      background: var(--surface-2);
+      border: 2px dashed var(--line-2);
+      border-radius: var(--radius);
+    }
+
+    /* ---------- Оборудование ---------- */
+    .equipment {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 30px;
+      align-items: center;
+      margin-top: 40px;
+      padding: 26px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .equipment .stub { aspect-ratio: 4 / 3; }
+    .equipment h3 { font-size: 19px; color: var(--ink); margin-bottom: 8px; }
+    .equipment p { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+    .link-arrow { font-size: 14px; font-weight: 600; color: var(--gold-soft); }
+    .link-arrow:hover { color: var(--gold); }
+
+    /* ---------- Документы ---------- */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+    .doc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .doc-card .stub {
+      aspect-ratio: 3 / 4;
+      border: none;
+      border-bottom: 1px dashed var(--line-2);
+      border-radius: 0;
+    }
+    .doc-card .cap { padding: 14px 16px 16px; }
+    .doc-card .cap strong { display: block; font-size: 14.5px; font-weight: 600; color: var(--ink); }
+    .doc-card .cap span { font-size: 12.5px; color: var(--muted); }
+
+    /* ---------- Новости ---------- */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .news-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .news-card .stub {
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-bottom: 1px dashed var(--line-2);
+      border-radius: 0;
+    }
+    .news-body { padding: 20px; }
+    .news-date {
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .news-body h3 { font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+    .news-body p { font-size: 14.5px; color: var(--muted); }
+
+    /* ---------- Доп. услуги ---------- */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .extra-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .extra-item span { font-size: 15px; color: var(--text); }
+    .extra-item b { font-size: 15px; color: var(--ink); white-space: nowrap; }
+
+    /* ---------- Контакты ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: start;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .contact-grid .form-wrapper { max-width: none; margin: 0; width: 100%; }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px;
+    }
+    .contact-list li { margin-bottom: 16px; font-size: 15px; color: var(--text); }
+    .contact-list li b {
+      display: block;
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .contact-list a { color: var(--gold-soft); }
+    .contact-list a:hover { color: var(--gold); }
+    .messengers { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .messengers a {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border: 1px solid var(--line-2);
+      border-radius: 10px;
+      color: var(--gold-soft);
+      transition: border-color .2s, background .2s, color .2s;
+    }
+    .messengers a:hover { border-color: var(--gold-soft); background: rgba(212, 175, 55, .08); color: var(--gold); }
+    .map-stub { aspect-ratio: 4 / 3; margin-top: 18px; }
+
+    /* ---------- Футер ---------- */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 22px;
+      margin: 14px 0 10px;
+      font-size: 13px;
+    }
+    .footer-links a { color: var(--muted); border-bottom: 1px solid rgba(156, 163, 175, .3); }
+    .footer-links a:hover { color: var(--gold-soft); }
+    .footer-req { font-size: 12px; color: #6B7280; }
+
     /* ---------- Мобильные ---------- */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .equipment { grid-template-columns: 1fr; gap: 20px; }
+    }
+
     @media (max-width: 768px) {
+      .nav {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 18px;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+      }
+      .nav::-webkit-scrollbar { display: none; }
+      .extra-item { flex-direction: column; align-items: flex-start; gap: 4px; }
       .hero { padding: 64px 0 56px; }
       .hero p { font-size: 16px; }
       .section { padding: 64px 0; }
@@ -477,6 +720,18 @@
   <header>
     <div class="container header-inner">
       <div class="logo">Шпак <span>Максим</span></div>
+
+      <nav class="nav" aria-label="Разделы сайта">
+        <a href="#services">Услуги</a>
+        <a href="#process">Как проходит</a>
+        <a href="#about">Обо мне</a>
+        <a href="#pricing">Стоимость</a>
+        <a href="#docs">Документы</a>
+        <a href="#news">Новости</a>
+        <a href="#extras">Доп. услуги</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
       <div class="header-contact">
         <a href="tel:+79224839229" class="phone">+7 (922) 483-92-29</a>
         <a href="#contact" class="btn">Записаться</a>
@@ -489,6 +744,12 @@
       <h1>Узнайте правду с точностью 95–99%</h1>
       <p>Профессиональные проверки на полиграфе для бизнеса и частных лиц. Полная конфиденциальность и официальное заключение.</p>
       <a href="#contact" class="btn">Получить консультацию</a>
+
+      <div class="trust">
+        <span>Сертифицированный специалист</span>
+        <span>Результат в день проверки</span>
+        <span>Полная конфиденциальность</span>
+      </div>
 
       <div class="stats">
         <div class="stat-item">
@@ -507,7 +768,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section id="services" class="section">
     <div class="container">
       <div class="section-title">
         <h2>Направления работы</h2>
@@ -540,7 +801,48 @@
     </div>
   </section>
 
-  <section class="section about">
+  <section id="process" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Как проходит проверка</h2>
+        <p>Четыре шага от звонка до результата</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Звонок и консультация</h3>
+          <p>Обсуждаем задачу и подбираем формат проверки. Отвечаю на вопросы до записи, консультация бесплатная.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Подготовка вопросов</h3>
+          <p>Составляю перечень вопросов под вашу ситуацию. Формулировки согласовываем заранее.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Проверка</h3>
+          <p>Спокойная обстановка, датчики, нейтральная беседа. Длительность — от 1 до 3 часов.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Результат</h3>
+          <p>Заключение озвучиваю сразу после проверки. Письменный отчёт — по договорённости.</p>
+        </div>
+      </div>
+
+      <div class="equipment">
+        <div class="stub">[ Заглушка: фото полиграфа ]</div>
+        <div>
+          <h3>Современный полиграф</h3>
+          <p>Профессиональное оборудование с действующей поверкой. Датчики дыхания, кожной реакции и сердечного ритма.</p>
+          <a href="#" class="link-arrow">Посмотреть паспорт прибора ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -562,7 +864,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section id="pricing" class="section">
     <div class="container">
       <div class="section-title">
         <h2>Стоимость услуг</h2>
@@ -610,6 +912,118 @@
     </div>
   </section>
 
+  <section id="docs" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Документы</h2>
+        <p>Образование, сертификация и поверка оборудования</p>
+      </div>
+
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="stub">[ Заглушка: скан диплома ]</div>
+          <div class="cap">
+            <strong>Диплом о переподготовке</strong>
+            <span>Полиграфология</span>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="stub">[ Заглушка: сертификат ]</div>
+          <div class="cap">
+            <strong>Сертификат специалиста</strong>
+            <span>Полиграфолог</span>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="stub">[ Заглушка: свидетельство ]</div>
+          <div class="cap">
+            <strong>Свидетельство о поверке</strong>
+            <span>Полиграф</span>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="stub">[ Заглушка: паспорт прибора ]</div>
+          <div class="cap">
+            <strong>Паспорт прибора</strong>
+            <span>Оборудование</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="section about">
+    <div class="container">
+      <div class="section-title">
+        <h2>Новости</h2>
+        <p>Практика, разборы ситуаций и обновления</p>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card">
+          <div class="stub">[ Заглушка: обложка новости ]</div>
+          <div class="news-body">
+            <div class="news-date">[ Дата ]</div>
+            <h3>[ Заглушка: заголовок новости ]</h3>
+            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="stub">[ Заглушка: обложка новости ]</div>
+          <div class="news-body">
+            <div class="news-date">[ Дата ]</div>
+            <h3>[ Заглушка: заголовок новости ]</h3>
+            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="stub">[ Заглушка: обложка новости ]</div>
+          <div class="news-body">
+            <div class="news-date">[ Дата ]</div>
+            <h3>[ Заглушка: заголовок новости ]</h3>
+            <p>[ Заглушка: короткий текст новости на 2–3 строки ]</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="extras" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Дополнительные услуги</h2>
+        <p>То, что можно добавить к основной проверке</p>
+      </div>
+
+      <div class="extras-grid">
+        <div class="extra-item">
+          <span>Срочная проверка в день обращения</span>
+          <b>[ цена ]</b>
+        </div>
+        <div class="extra-item">
+          <span>Выезд за пределы Тюмени</span>
+          <b>[ цена ]</b>
+        </div>
+        <div class="extra-item">
+          <span>Письменное заключение для суда</span>
+          <b>[ цена ]</b>
+        </div>
+        <div class="extra-item">
+          <span>Повторная проверка по тем же вопросам</span>
+          <b>[ цена ]</b>
+        </div>
+        <div class="extra-item">
+          <span>Консультация по результатам проверки</span>
+          <b>Бесплатно</b>
+        </div>
+        <div class="extra-item">
+          <span>Проверка на выезде в другом городе</span>
+          <b>[ цена ]</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="section contact">
     <div class="container">
       <div class="section-title">
@@ -617,7 +1031,8 @@
         <p>Заполните форму — я свяжусь с вами в ближайшее время</p>
       </div>
 
-      <div class="form-wrapper">
+      <div class="contact-grid">
+        <div class="form-wrapper">
         <form id="tgForm" novalidate>
           <div class="form-group">
             <label for="name">Ваше имя</label>
@@ -645,6 +1060,38 @@
           <p class="form-status err" style="margin-top: 12px;">Для отправки заявки включите JavaScript в браузере или позвоните по телефону.</p>
         </noscript>
         <p class="form-note">Или позвоните: <a href="tel:+79224839229">+7 (922) 483-92-29</a></p>
+        </div>
+
+        <aside class="contact-card">
+          <ul class="contact-list">
+            <li>
+              <b>Телефон</b>
+              <a href="tel:+79224839229">+7 (922) 483-92-29</a>
+            </li>
+            <li>
+              <b>Город</b>
+              Тюмень и Тюменская область
+            </li>
+            <li>
+              <b>Адрес офиса</b>
+              [ Заглушка: адрес ]
+            </li>
+            <li>
+              <b>Часы работы</b>
+              Ежедневно, по записи
+            </li>
+            <li>
+              <b>Мессенджеры</b>
+              <div class="messengers">
+                <a href="#" target="_blank" rel="noopener">WhatsApp</a>
+                <a href="#" target="_blank" rel="noopener">Telegram</a>
+                <a href="#" target="_blank" rel="noopener">Viber</a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="stub map-stub">[ Заглушка: карта проезда ]</div>
+        </aside>
       </div>
     </div>
   </section>
@@ -652,6 +1099,12 @@
   <footer>
     <div class="container">
       <p>© 2026 Полиграфолог Шпак Максим. Все права защищены.</p>
+      <div class="footer-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Согласие на обработку данных</a>
+        <a href="#">Договор и гарантии</a>
+      </div>
+      <p class="footer-req">[ Заглушка: ИП / самозанятый, ИНН, ОГРНИП ]</p>
     </div>
   </footer>
 
