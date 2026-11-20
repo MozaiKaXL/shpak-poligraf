@@ -19,7 +19,7 @@
   <meta property="og:url" content="https://mozaikaxl.github.io/shpak-poligraf/">
   <meta property="og:title" content="Полиграфолог Шпак Максим — проверка на полиграфе в Тюмени">
   <meta property="og:description" content="Проверки на детекторе лжи для бизнеса и частных лиц. Конфиденциально, с официальным заключением. Тюмень и Москва.">
-  <meta property="og:image" content="https://mozaikaxl.github.io/shpak-poligraf/photo-shpak-office.webp">
+  <meta property="og:image" content="https://mozaikaxl.github.io/shpak-poligraf/photo-shpak-desk.webp">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Микроразметка для Яндекса и Google -->
@@ -38,7 +38,7 @@
       "addressLocality": "Тюмень",
       "addressCountry": "RU"
     },
-    "image": "https://mozaikaxl.github.io/shpak-poligraf/photo-shpak-office.webp",
+    "image": "https://mozaikaxl.github.io/shpak-poligraf/photo-shpak-desk.webp",
     "url": "https://mozaikaxl.github.io/shpak-poligraf/"
   }
   </script>
@@ -244,8 +244,8 @@
     .about { background: #43434C; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 56px;
+      grid-template-columns: 1fr 500px;
+      gap: 48px;
       align-items: center;
     }
     .about-text h2 {
@@ -285,7 +285,7 @@
       overflow: hidden;
       border: 1px solid rgba(212, 175, 55, .35);
       background: #35353D;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 3;
       box-shadow: 0 24px 60px -28px rgba(0, 0, 0, .95);
     }
     .portrait img {
@@ -293,7 +293,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 18%;
+      object-position: 50% 50%;
     }
 
     /* ---------- Заявка ---------- */
@@ -456,25 +456,10 @@
     .step h3 { font-size: 17px; margin: 10px 0 8px; color: var(--ink); }
     .step p { font-size: 14.5px; color: var(--muted); }
 
-    /* ---------- Заглушки для будущих картинок ---------- */
-    .stub {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 18px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      background: var(--surface-2);
-      border: 2px dashed var(--line-2);
-      border-radius: var(--radius);
-    }
-
     /* ---------- Оборудование ---------- */
     .equipment {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 30px;
       align-items: center;
       margin-top: 40px;
@@ -483,9 +468,23 @@
       border: 1px solid var(--line);
       border-radius: 16px;
     }
-    .equipment .stub { aspect-ratio: 4 / 3; }
     .equipment h3 { font-size: 19px; color: var(--ink); margin-bottom: 8px; }
     .equipment p { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+    .equipment-media {
+      display: block;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--line-2);
+      background: #fff;
+      line-height: 0;
+    }
+    .equipment-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .3s;
+    }
+    .equipment-media:hover img { transform: scale(1.03); }
     .link-arrow { font-size: 14px; font-weight: 600; color: var(--gold-soft); }
     .link-arrow:hover { color: var(--gold); }
 
@@ -546,7 +545,7 @@
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; }
       .equipment { grid-template-columns: 1fr; gap: 20px; }
-      .about-grid { grid-template-columns: 1fr 300px; gap: 36px; }
+      .about-grid { grid-template-columns: 1fr 360px; gap: 36px; }
     }
 
     @media (max-width: 768px) {
@@ -691,11 +690,13 @@
       </div>
 
       <div class="equipment">
-        <div class="stub">[ Заглушка: фото полиграфа ]</div>
+        <a class="equipment-media" href="poligraf-passport.webp" target="_blank" rel="noopener" title="Открыть паспорт прибора">
+          <img src="poligraf-sensors.webp" alt="Датчики полиграфа «Финист» DX3090" width="913" height="542" loading="lazy" decoding="async">
+        </a>
         <div>
           <h3>Полиграф Молчанова</h3>
           <p>Работаю на профессиональном полиграфе Молчанова — оборудование с действующей поверкой. Датчики дыхания, кожной реакции и сердечного ритма.</p>
-          <a href="#" class="link-arrow">Посмотреть паспорт прибора ↗</a>
+          <a href="poligraf-passport.webp" class="link-arrow" target="_blank" rel="noopener">Посмотреть паспорт прибора ↗</a>
         </div>
       </div>
     </div>
@@ -716,7 +717,7 @@
           </ul>
         </div>
         <div class="portrait">
-          <img src="photo-shpak-office.webp" alt="Шпак Максим — полиграфолог за рабочим местом" width="765" height="1024" loading="lazy" decoding="async">
+          <img src="photo-shpak-desk.webp" alt="Шпак Максим — полиграфолог за рабочим столом с полиграфом" width="1280" height="960" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
